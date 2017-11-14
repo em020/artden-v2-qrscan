@@ -1,0 +1,80 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'repo1'
+    bintrayName = 'artdenv2-qrscan'
+
+    publishedGroupId = 'com.artdenshop'
+    libraryName = 'artdenv2-qrscan'
+    artifact = 'artdenv2qrscan'
+
+    libraryDescription = 'artdenv2-qrscan'
+
+    siteUrl = 'https://site-url.foo'
+    gitUrl = 'https://git-url.foo'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'em020'
+    developerName = 'Yimin S'
+    developerEmail = 'eamyn.s@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    javadoc {
+        failOnError false
+        options{
+            encoding "UTF-8"
+            charSet 'UTF-8'
+//            author true
+//            version true
+//            links "http://docs.oracle.com/javase/7/docs/api"
+//            title "fragment-view-pager docs"
+        }
+    }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:animated-vector-drawable:25.3.1'
+    compile 'com.journeyapps:zxing-android-embedded:3.5.0'
+    compile 'com.artdenshop:handyactionbar:0.0.1'
+    compile 'com.artdenshop:sbf:0.0.3'
+    compile 'com.artdenshop:artdenv2album:0.0.2'
+    testCompile 'junit:junit:4.12'
+}
+
+
+// Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
